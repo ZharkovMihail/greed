@@ -8,33 +8,14 @@ typedef struct les {
 	int finish;
 	string bla;
 }les;
-void select(les *mas, int size)
-{
-	int tmp;
-	for (int i = 0; i < size; ++i) 
-	{
-		int pos = i;
-		les tmp = mas[i];
-		for (int j = i + 1; j < size; ++j) 
-		{
-			if (mas[j].finish < tmp.finish)
-			{
-				pos = j;
-				tmp = mas[j];
-			}
-		}
-		mas[pos] = mas[i];
-		mas[i] = tmp; 
-	}
-}
 
 void quickSortR(les* a, int N) {
 
-	long i = 0, j = N;      
+	long i = 0, j = N;
 	int temp, p;
-	p = a[N >> 1].finish;     
+	p = a[N >> 1].finish;
 	les temp1;
-					
+
 	do {
 		while (a[i].finish < p) i++;
 		while (a[j].finish > p) j--;
@@ -57,7 +38,7 @@ int main() {
 	for (int i = 0; i < n; i++) {
 		getline(cin, st1);
 		int g = st1.length();
-		string r,r2,r1;
+		string r, r2, r1;
 		int j;
 
 		for (j = 0; j < g; j++) {
@@ -74,31 +55,21 @@ int main() {
 			}
 			r1 = r1 + st1[j];
 		}
-		mas[i].finish= atoi(r1.c_str());
+		mas[i].finish = atoi(r1.c_str());
 		j++;
 		for (j; j < g; j++) {
 			r2 = r2 + st1[j];
 		}
 		mas[i].bla = r2;
 	}
-	cout << endl;
-	quickSortR(mas, n-1);
-	for (int i = 0; i < n; i++) {
-		cout << mas[i].start << mas[i].finish << mas[i].bla << ' ';
-	}
-    
-	cout << endl;
-	
-	int y=-1;
-	int finish = 0;
-	int finmin =mas[1].finish;
+	quickSortR(mas, n - 1);
+	int finmin = mas[1].finish;
 	cout << mas[1].bla;
-	
 	for (int i = 1; i < n; i++) {
 		if (finmin < mas[i].start) {
-			cout<< mas[i].bla;
+			cout << mas[i].bla;
 			finmin = mas[i].finish;
 		}
-	}	
+	}
 	return 0;
 }
